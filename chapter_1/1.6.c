@@ -9,6 +9,7 @@ int main()
 {
     int c;
     while (c = getchar() != EOF)
+    // while (( c = getchar() ) != EOF)
     {
         fflush(stdout);
         usleep(50000);
