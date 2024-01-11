@@ -1,5 +1,7 @@
 /*
-    Write a program to count blanks, tabs, and newlines.
+    Write a program to copy its input to its output, replacing each
+    tab by \t, each backspace by \b, and each backslash by \\. This makes tabs
+    and backspaces visible in an unambiguous way.
 */
 
 #include <stdio.h>
@@ -21,7 +23,8 @@ int main()
         }
         else if (c == '\\')
         {
-            putchar('\\\\');
+            putchar('\\');
+            putchar('\\');
         }
         else
         {
