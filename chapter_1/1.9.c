@@ -5,24 +5,18 @@
 
 #include <stdio.h>
 
-int main()
-{
-    int c, lastWasSpace = 0;
+int main() {
+  int c, lastWasSpace = 0;
 
-    while ((c = getchar()) != EOF)
-    {
-        if (c == '\t' || c == ' ')
-        {
-            if (!lastWasSpace)
-            {
-                putchar(' ');
-                lastWasSpace = 1;
-            }
-        }
-        else
-        {
-            putchar(c);
-            lastWasSpace = 0;
-        }
+  while ((c = getchar()) != EOF) {
+    if (c == '\t' || c == ' ') {
+      if (!lastWasSpace) {
+        putchar(' ');
+        lastWasSpace = 1;
+      }
+    } else {
+      putchar(c);
+      lastWasSpace = 0;
     }
+  }
 }

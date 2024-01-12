@@ -5,14 +5,11 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int main()
-{
-    int c;
-    while (c = getchar() != EOF)
-    // while (( c = getchar() ) != EOF)
-    {
-        fflush(stdout);
-        usleep(50000);
-        putchar(c);
-    }
+int main() {
+  int c;
+  while (c = getchar() != EOF) {
+    fflush(stdout);
+    usleep(50000);
+    putchar(c);
+  }
 }

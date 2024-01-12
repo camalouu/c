@@ -3,7 +3,4 @@
     string contains \c, where c is some character not listed above.
 */
 #include <stdio.h>
-main()
-{
-    printf("hello, \c world");
-}
+int main() { printf("hello, \c world"); }
