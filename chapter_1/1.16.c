@@ -18,17 +18,17 @@ int main() {
   char longest[MAXLINE];
   max = 0;
   while ((len = getline_(line, MAXLINE)) > 0) {
-    if (len > max) {
+    if (len >= max) {
       max = len;
       copy(longest, line);
-      if (line[max - 1] != '\n' && line[max - 1] != EOF) {
-        int outBuffer;
-        while ((outBuffer = getchar()) != EOF && outBuffer != '\n') {
+      if (line[max - 1] != '\n') {
+        char outBuffer;
+        while ((outBuffer = getchar()) != '\n' && outBuffer != EOF) {
           len++;
         }
       }
-      printf("\nout buffer line length: %d\n", len - max);
     }
+    printf("\nline length: %d\n\n", len);
   }
 
   if (max > 0)
