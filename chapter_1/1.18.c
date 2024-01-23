@@ -22,27 +22,28 @@ int getline_(char line[], int maxlength) {
   return i;
 }
 
-int isNotSpace(char c) {
-  if (c == '\t' || c == ' ')
-    return 0;
-  return 1;
+int isSpace(char c) {
+  if (c == '\t' || c == ' ' || c == '\n')
+    return 1;
+  return 0;
 }
 
 void trim_(char line[], int len) {
   int start;
   int end;
 
-  for (start = 0; start < len && isNotSpace(line[start]); start++) {
+  for (start = 0; start < len && isSpace(line[start]); start++) {
   }
-  for (end = len - 1; end >= 0 && isNotSpace(line[end]); end--) {
-  }
-
-  for (int i = 0; i < end - start; i++) {
-    line[i] = i + start;
+  for (end = len - 1; end >= 0 && isSpace(line[end]); end--) {
   }
 
-  line[end] = '\n';
-  line[end + 1] = '\0';
+  int i;
+  for (i = 0; i < end - start + 1; i++) {
+    line[i] = line[i + start];
+  }
+
+  line[i] = '\n';
+  line[i + 1] = '\0';
 }
 
 int main() {
