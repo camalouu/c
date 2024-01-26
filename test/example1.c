@@ -1,0 +1,1 @@
+int sayOne() { return 1; }

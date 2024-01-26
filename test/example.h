@@ -1,0 +1,2 @@
+
+int sayOne(void);
