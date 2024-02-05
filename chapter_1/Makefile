@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror
-SRC = test.c
+SRC = 1.20.c
 EXECUTABLE = app
 
 all: $(EXECUTABLE)
