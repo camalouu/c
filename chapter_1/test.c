@@ -1,47 +1,24 @@
 #include <stdio.h>
 
-#define MAXLINE 1000
+void badFuntion(char *line) {
 
-char line[MAXLINE];
-char longest[MAXLINE];
-int max;
+  line[0] = 't';
+  line[1] = 'e';
+  line[2] = 's';
+  line[3] = 't';
+  line[4] = '\n';
+  line[5] = '\0';
 
-int getline_(void);
-
-void copy(void);
+  line[20000] = 'a';
+  printf("%s", line);
+}
 
 int main() {
-  int len;
-  extern int max;
-  extern char longest[];
-  max = 0;
-  while ((len = getline_()) > 0)
-    if (len > max) {
-      max = len;
-      copy();
-    }
-  if (max > 0)
-    printf("%s", longest);
+  // char line[10];
+  // line = (char *)malloc(10 * sizeof(char));
+
+  // badFuntion(line);
+  while (3)
+    printf("%d\n", 18 / 8);
   return 0;
-}
-
-int getline_(void) {
-  int c, i;
-  extern char line[];
-  for (i = 0; i < MAXLINE - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
-    line[i] = c;
-  if (c == '\n') {
-    line[i] = c;
-    ++i;
-  }
-  line[i] = '\0';
-  return i;
-}
-
-void copy(void) {
-  int i;
-  extern char line[], longest[];
-  i = 0;
-  while ((longest[i] = line[i]) != '\0')
-    ++i;
 }

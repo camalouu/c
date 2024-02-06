@@ -1,7 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Werror
-SRC = 1.20.c
+SRC = 1.21.c
 EXECUTABLE = app
+TESTAPP = test
 
 all: $(EXECUTABLE)
 	./$(EXECUTABLE)
@@ -12,3 +13,8 @@ $(EXECUTABLE): $(SRC)
 
 clean:
 	rm -f $(EXECUTABLE)
+
+$(TESTAPP): test.c 
+	$(CC) $(CFLAGS) -o $(TESTAPP) test.c
+	./$(TESTAPP)
+	rm -f $(TESTAPP)

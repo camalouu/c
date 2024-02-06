@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#define N 8
+#define N 8 // standart linux tab stop
 #define MAXLINE 1000
 
 int getlineWithDetab(char line[], int maxlength) {
@@ -29,7 +29,6 @@ int getlineWithDetab(char line[], int maxlength) {
 
   return i;
 }
-
 
 int main() {
   char line[MAXLINE];
