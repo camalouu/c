@@ -38,11 +38,9 @@ int getLineWithEntab(char line[], int maxlength) {
       spaceCount = spaceCount % N;
       while (spaceCount-- > 0)
         line[i++] = ' ';
-
-      line[i++] = c;
-    } else {
-      line[i++] = c;
     }
+
+    line[i++] = c;
   }
 
   if (c == '\n') {
