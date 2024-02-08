@@ -6,39 +6,40 @@
 */
 
 #include <stdio.h>
-#define N 8 // standart linux tab stop
+#define N 8 // standart linux terminal input tab stop
 #define MAXLINE 1000
 
-int putTab(char line[], int i) {
-  int tabStop = N;
-  while (tabStop--) {
-    line[i++] = ' ';
-  }
-}
-
+// maximum usage of tabs for indentation and minimal usage of spaces
 int getLineWithEntab(char line[], int maxlength) {
   char c;
   int i = 0;
 
   while (i < maxlength - 1 && (c = getchar()) != '\n' && c != EOF) {
     if (c == ' ') {
-      int spaceCount = 1;
-      char nextc;
 
-      while ((nextc = getchar()) == ' ')
+      // count all consecutive spaces
+      int spaceCount = 1;
+      while ((c = getchar()) == ' ')
         spaceCount++;
 
+      // how many spaces to put until the next tab stop
+      int spacesUntilNextTabStop = N - (i % N);
+      while (spacesUntilNextTabStop-- > 0 && spaceCount-- > 0) {
+        line[i++] = ' ';
+      }
+
+      // how many tabs to put until its no longer possible to put a full tab
       int tabCount = spaceCount / N;
-
-      while (tabCount--)
+      while (tabCount-- > 0) {
         line[i++] = '\t';
+      }
 
+      // fill the remaining with spaces
       spaceCount = spaceCount % N;
-
-      while (spaceCount--)
+      while (spaceCount-- > 0)
         line[i++] = ' ';
 
-      line[i++] = nextc;
+      line[i++] = c;
     } else {
       line[i++] = c;
     }

@@ -18,7 +18,8 @@ int main() {
   // line = (char *)malloc(10 * sizeof(char));
 
   // badFuntion(line);
-  while (3)
-    printf("%d\n", 18 / 8);
+  int times = 5;
+  while (times--)
+    printf("salom\tlar\n");
   return 0;
 }
