@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror
-SRC = 1.21.c
+SRC = 1.22.c
 EXECUTABLE = app
 TESTAPP = test
 

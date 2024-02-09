@@ -1,25 +1,80 @@
 #include <stdio.h>
 
-void badFuntion(char *line) {
+#define MAXCOL 10
+#define TABINC 8
 
-  line[0] = 't';
-  line[1] = 'e';
-  line[2] = 's';
-  line[3] = 't';
-  line[4] = '\n';
-  line[5] = '\0';
+char line[MAXCOL];
 
-  line[20000] = 'a';
-  printf("%s", line);
-}
+int exptab(int pos);
+int findblnk(int pos);
+int newpos(int pos);
+void printl(int pos);
 
 int main() {
-  // char line[10];
-  // line = (char *)malloc(10 * sizeof(char));
+  int c, pos;
+  pos = 0;
 
-  // badFuntion(line);
-  int times = 5;
-  while (times--)
-    printf("salom\tlar\n");
-  return 0;
+  while ((c = getchar()) != EOF) {
+    line[pos] = c;
+    if (c == '\t') {
+      pos = exptab(pos);
+    } else if (c == '\n') {
+      printl(pos);
+      pos = 0;
+    } else if (++pos >= MAXCOL) {
+      pos = findblnk(pos);
+      printl(pos);
+      pos = newpos(pos);
+    }
+  }
+}
+
+void printl(int pos) {
+  for (int i = 0; i < pos; ++i)
+    putchar(line[i]);
+
+  if (pos > 0)
+    putchar('\n');
+}
+
+/* Expand tab into blanks */
+int exptab(int pos) {
+  line[pos] = ' '; /* tab is at least one blank */
+
+  for (++pos; pos < MAXCOL && pos % TABINC != 0; ++pos)
+    line[pos] = ' ';
+
+  if (pos < MAXCOL) /* room left in current line */
+    return pos;
+  else {
+    /* current line is full */
+    printl(pos);
+    return 0; /* reset current position */
+  }
+}
+
+int findblnk(int pos) {
+  while (pos > 0 && line[pos] != ' ')
+    --pos;
+
+  if (pos == 0) /* no blanks in the line? */
+    return MAXCOL;
+  else              /* at least one blank */
+    return pos + 1; /* position after the blank */
+}
+
+/* Rearrange line with new position */
+int newpos(int pos) {
+  int i, j;
+
+  if (pos <= 0 || pos >= MAXCOL)
+    return 0; /* nothing to rearrange */
+  else {
+    i = 0;
+    for (j = pos; j < MAXCOL; ++j) {
+      line[i] = line[j];
+      ++i;
+    }
+    return i; /* new position in line */
+  }
 }
